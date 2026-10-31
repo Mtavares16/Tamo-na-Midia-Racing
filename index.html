@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>TAMO NA MÍDIA RACING — BUILD 04 CORRIGIDA</title>
+<title>TAMO NA MÍDIA RACING — BUILD 05 — CÂMERA CORRIGIDA</title>
 <style>
 :root{--bg:#090d12;--panel:#121a23;--line:#2c3947;--gold:#e0ad45;--txt:#edf2f7;--muted:#9eabb9}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font:14px system-ui,-apple-system,Arial}#app{height:100%;display:grid;grid-template-rows:auto 1fr auto}
@@ -11,7 +11,7 @@ header{padding:10px 14px;background:#080b0f;border-bottom:1px solid var(--line);
 #panel{background:var(--panel);border-top:1px solid var(--line);padding:9px 11px max(9px,env(safe-area-inset-bottom));max-height:43vh;overflow:auto}.tabs{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}button,select{border:1px solid #405060;background:#202c38;color:var(--txt);border-radius:8px;padding:8px 9px;font:inherit;font-size:12px}button.active{border-color:var(--gold);color:var(--gold)}.controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.wide{grid-column:1/-1}.row{min-width:0}label{display:block;color:var(--muted);font-size:10px;margin:3px 0}.value{color:var(--gold);float:right}input[type=range]{width:100%;accent-color:var(--gold)}#message{color:var(--gold);font-size:10px;min-height:15px;margin-top:7px}footer{padding:5px;text-align:center;color:#657382;font-size:8px;letter-spacing:1.2px;background:#080b0f}
 @media(min-width:800px){#panel{position:absolute;right:14px;top:70px;width:300px;max-height:calc(100% - 88px);border:1px solid var(--line);border-radius:12px;background:#121a23ee;backdrop-filter:blur(8px)}}
 </style></head><body><div id="app">
-<header><div><h1>TAMO NA MÍDIA <span>RACING</span></h1><small>BUILD 04 · OFICINA MECÂNICA 3D — CORRIGIDA</small></div><small>PROTÓTIPO EVOLUTIVO</small></header>
+<header><div><h1>TAMO NA MÍDIA <span>RACING</span></h1><small>BUILD 05 · CÂMERA PROTEGIDA</small></div><small>PROTÓTIPO EVOLUTIVO</small></header>
 <div id="stage"><div id="hint">Arraste para girar · Pinça/roda para zoom</div></div>
 <section id="panel"><div class="tabs">
 <button id="hoodBtn">Abrir capô</button><button id="leftBtn">Porta esquerda</button><button id="rightBtn">Porta direita</button><button id="trunkBtn">Abrir porta-malas</button><button id="liftBtn">Subir elevador</button><button id="engineBtn">Retirar motor</button><button id="suspBtn">Mostrar suspensão</button><button id="resetBtn">Centralizar</button>
@@ -23,16 +23,16 @@ header{padding:10px 14px;background:#080b0f;border-bottom:1px solid var(--line);
 <div class="row"><label>Cambagem <span class="value" id="camberOut">0°</span></label><input id="camber" type="range" min="-10" max="10" value="0"></div>
 <div class="row"><label>Zoom <span class="value" id="zoomOut">100%</span></label><input id="zoom" type="range" min="70" max="150" value="100"></div>
 </div><div id="message">Oficina experimental carregada — motor 2.0 16V, suspensão e elevador interativos.</div></section>
-<footer>BUILD YOUR STYLE, CREATE YOUR LEGEND. · BUILD 04 — OFICINA MECÂNICA</footer></div>
+<footer>BUILD YOUR STYLE, CREATE YOUR LEGEND. · BUILD 05 — CÂMERA PROTEGIDA</footer></div>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
 <script type="module">
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
 const stage=document.querySelector('#stage'),msg=document.querySelector('#message');
 const scene=new THREE.Scene();scene.background=new THREE.Color(0x111a23);scene.fog=new THREE.Fog(0x111a23,13,30);
-const camera=new THREE.PerspectiveCamera(39,1,.1,100);camera.position.set(6.8,3.6,7.4);
+const camera=new THREE.PerspectiveCamera(39,1,.1,100);camera.position.set(3.4,2.65,3.65);
 const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;stage.appendChild(renderer.domElement);
-const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.target.set(0,1.05,0);controls.minDistance=4.2;controls.maxDistance=15;controls.maxPolarAngle=Math.PI*.48;
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.target.set(0,1.05,0);controls.minDistance=4.2;controls.maxDistance=5.1;controls.maxPolarAngle=Math.PI*.43;controls.minPolarAngle=.18;controls.enablePan=false;
 scene.add(new THREE.HemisphereLight(0xdce8f2,0x252a31,2.1));const key=new THREE.DirectionalLight(0xffffff,3.2);key.position.set(-4,8,6);key.castShadow=true;key.shadow.mapSize.set(2048,2048);scene.add(key);const fill=new THREE.DirectionalLight(0x8aaac8,1.35);fill.position.set(5,4,-6);scene.add(fill);
 const floor=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.MeshStandardMaterial({color:0x252c33,roughness:.82}));floor.rotation.x=-Math.PI/2;floor.position.y=-.035;floor.receiveShadow=true;scene.add(floor);const grid=new THREE.GridHelper(40,40,0x47515a,0x303941);grid.position.y=-.025;scene.add(grid);
 const car=new THREE.Group();scene.add(car);
@@ -147,12 +147,21 @@ function resize(){const w=stage.clientWidth,h=stage.clientHeight;camera.aspect=w
 let hoodOpen=false,trunkOpen=false,doorOpen=[false,false];document.querySelector('#hoodBtn').onclick=()=>{hoodOpen=!hoodOpen;hoodPivot.rotation.z=hoodOpen?-.82:0;engineGroup.visible=hoodOpen&&!engineRemoved;document.querySelector('#hoodBtn').textContent=hoodOpen?'Fechar capô':'Abrir capô';msg.textContent=hoodOpen?'Capô aberto — motor 2.0 16V e componentes do cofre visíveis.':'Capô fechado.'};
 function toggleDoor(i){doorOpen[i]=!doorOpen[i];doors[i].pivot.rotation.y=doorOpen[i]?doors[i].side*.85:0;document.querySelector(i?'#rightBtn':'#leftBtn').textContent=(i?'Porta direita':'Porta esquerda')+(doorOpen[i]?' — fechar':'');msg.textContent='Porta '+(i?'direita':'esquerda')+(doorOpen[i]?' aberta.':' fechada.')};document.querySelector('#leftBtn').onclick=()=>toggleDoor(0);document.querySelector('#rightBtn').onclick=()=>toggleDoor(1);
 document.querySelector('#trunkBtn').onclick=()=>{trunkOpen=!trunkOpen;trunkPivot.rotation.z=trunkOpen?.85:0;document.querySelector('#trunkBtn').textContent=trunkOpen?'Fechar porta-malas':'Abrir porta-malas';msg.textContent=trunkOpen?'Porta-malas aberta.':'Porta-malas fechada.'};
-document.querySelector('#resetBtn').onclick=()=>{camera.position.set(6.8,3.6,7.4);controls.target.set(0,1.05,0);controls.update();msg.textContent='Câmera centralizada.'};
+document.querySelector('#resetBtn').onclick=()=>{camera.position.set(3.4,2.65,3.65);controls.target.set(0,1.05,0);controls.update();msg.textContent='Câmera centralizada.'};
 document.querySelector('#paint').onchange=e=>{bodyMat.color.set(e.target.value);document.querySelector('#colorName').textContent=e.target.options[e.target.selectedIndex].text};
 document.querySelector('#rim').oninput=e=>{const n=+e.target.value;document.querySelector('#rimOut').textContent=n+'”';const r=.43+(n-18)*.012;wheels.forEach(w=>{w.g.scale.setScalar(r/.43)})};
 document.querySelector('#ride').oninput=e=>{const v=+e.target.value;const y=.43+(v/100)*.32;wheels.forEach(w=>w.g.position.y=y);document.querySelector('#rideOut').textContent=v<18?'Muito baixa':v<42?'Baixa':v<70?'Média':'Alta'};
 document.querySelector('#camber').oninput=e=>{const v=+e.target.value;document.querySelector('#camberOut').textContent=v+'°';wheels.forEach(w=>w.g.rotation.x=v*.012)};
-document.querySelector('#zoom').oninput=e=>{const v=+e.target.value;document.querySelector('#zoomOut').textContent=v+'%';camera.position.set(6.8*100/v,3.6*100/v,7.4*100/v);controls.update()};
+document.querySelector('#zoom').oninput=e=>{const v=+e.target.value;document.querySelector('#zoomOut').textContent=v+'%';const dir=camera.position.clone().sub(controls.target).normalize();const dist=THREE.MathUtils.clamp(5.0*100/v,controls.minDistance,controls.maxDistance);camera.position.copy(controls.target).addScaledVector(dir,dist);controls.update()};
 document.querySelector('#wheelStyle').onchange=e=>{const v=e.target.value;document.querySelector('#wheelOut').textContent=e.target.options[e.target.selectedIndex].text;const mat=v==='dark'?wheelDark:wheelWhite;wheels.forEach(w=>{w.spokeGroup.children.forEach(s=>{s.material=mat;s.visible=v!=='five'||s.userData.spokeIndex%2===0});w.g.children[1].material=mat})};
-function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera)}animate();
+// Camera safety volume: the bay walls are at +/-4.85 and ceiling at 4.8.
+// Keep the camera inside a smaller collision-safe box and looking at the car.
+function protectCamera(){
+  const limit=3.95;
+  camera.position.x=THREE.MathUtils.clamp(camera.position.x,-limit,limit);
+  camera.position.z=THREE.MathUtils.clamp(camera.position.z,-limit,limit);
+  camera.position.y=THREE.MathUtils.clamp(camera.position.y,1.15,4.05);
+  camera.lookAt(controls.target);
+}
+function animate(){requestAnimationFrame(animate);controls.update();protectCamera();renderer.render(scene,camera)}animate();
 </script></body></html>
