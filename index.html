@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-<title>TAMO NA MÍDIA RACING — BUILD 06 — C4 VTR VISUAL</title>
+<title>TAMO NA MÍDIA RACING — BUILD 04 CORRIGIDA</title>
 <style>
 :root{--bg:#090d12;--panel:#121a23;--line:#2c3947;--gold:#e0ad45;--txt:#edf2f7;--muted:#9eabb9}
 *{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:var(--bg);color:var(--txt);font:14px system-ui,-apple-system,Arial}#app{height:100%;display:grid;grid-template-rows:auto 1fr auto}
@@ -11,7 +11,7 @@ header{padding:10px 14px;background:#080b0f;border-bottom:1px solid var(--line);
 #panel{background:var(--panel);border-top:1px solid var(--line);padding:9px 11px max(9px,env(safe-area-inset-bottom));max-height:43vh;overflow:auto}.tabs{display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}button,select{border:1px solid #405060;background:#202c38;color:var(--txt);border-radius:8px;padding:8px 9px;font:inherit;font-size:12px}button.active{border-color:var(--gold);color:var(--gold)}.controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.wide{grid-column:1/-1}.row{min-width:0}label{display:block;color:var(--muted);font-size:10px;margin:3px 0}.value{color:var(--gold);float:right}input[type=range]{width:100%;accent-color:var(--gold)}#message{color:var(--gold);font-size:10px;min-height:15px;margin-top:7px}footer{padding:5px;text-align:center;color:#657382;font-size:8px;letter-spacing:1.2px;background:#080b0f}
 @media(min-width:800px){#panel{position:absolute;right:14px;top:70px;width:300px;max-height:calc(100% - 88px);border:1px solid var(--line);border-radius:12px;background:#121a23ee;backdrop-filter:blur(8px)}}
 </style></head><body><div id="app">
-<header><div><h1>TAMO NA MÍDIA <span>RACING</span></h1><small>BUILD 06 · C4 VTR VISUAL</small></div><small>PROTÓTIPO EVOLUTIVO</small></header>
+<header><div><h1>TAMO NA MÍDIA <span>RACING</span></h1><small>BUILD 04 · OFICINA MECÂNICA 3D — CORRIGIDA</small></div><small>PROTÓTIPO EVOLUTIVO</small></header>
 <div id="stage"><div id="hint">Arraste para girar · Pinça/roda para zoom</div></div>
 <section id="panel"><div class="tabs">
 <button id="hoodBtn">Abrir capô</button><button id="leftBtn">Porta esquerda</button><button id="rightBtn">Porta direita</button><button id="trunkBtn">Abrir porta-malas</button><button id="liftBtn">Subir elevador</button><button id="engineBtn">Retirar motor</button><button id="suspBtn">Mostrar suspensão</button><button id="resetBtn">Centralizar</button>
@@ -22,17 +22,17 @@ header{padding:10px 14px;background:#080b0f;border-bottom:1px solid var(--line);
 <div class="row"><label>Altura <span class="value" id="rideOut">Baixa</span></label><input id="ride" type="range" min="0" max="100" value="28"></div>
 <div class="row"><label>Cambagem <span class="value" id="camberOut">0°</span></label><input id="camber" type="range" min="-10" max="10" value="0"></div>
 <div class="row"><label>Zoom <span class="value" id="zoomOut">100%</span></label><input id="zoom" type="range" min="70" max="150" value="100"></div>
-</div><div id="message">Build 06: carroceria estilizada com novos faróis, lanternas, frisos e detalhes do C4 VTR.</div></section>
-<footer>BUILD YOUR STYLE, CREATE YOUR LEGEND. · BUILD 06 — EVOLUÇÃO VISUAL</footer></div>
+</div><div id="message">Oficina experimental carregada — motor 2.0 16V, suspensão e elevador interativos.</div></section>
+<footer>BUILD YOUR STYLE, CREATE YOUR LEGEND. · BUILD 04 — OFICINA MECÂNICA</footer></div>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
 <script type="module">
 import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/controls/OrbitControls.js';
 const stage=document.querySelector('#stage'),msg=document.querySelector('#message');
 const scene=new THREE.Scene();scene.background=new THREE.Color(0x111a23);scene.fog=new THREE.Fog(0x111a23,13,30);
-const camera=new THREE.PerspectiveCamera(39,1,.1,100);camera.position.set(3.4,2.65,3.65);
+const camera=new THREE.PerspectiveCamera(39,1,.1,100);camera.position.set(6.8,3.6,7.4);
 const renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.05;stage.appendChild(renderer.domElement);
-const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.target.set(0,1.05,0);controls.minDistance=4.2;controls.maxDistance=5.1;controls.maxPolarAngle=Math.PI*.43;controls.minPolarAngle=.18;controls.enablePan=false;
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.target.set(0,1.05,0);controls.minDistance=4.2;controls.maxDistance=15;controls.maxPolarAngle=Math.PI*.48;
 scene.add(new THREE.HemisphereLight(0xdce8f2,0x252a31,2.1));const key=new THREE.DirectionalLight(0xffffff,3.2);key.position.set(-4,8,6);key.castShadow=true;key.shadow.mapSize.set(2048,2048);scene.add(key);const fill=new THREE.DirectionalLight(0x8aaac8,1.35);fill.position.set(5,4,-6);scene.add(fill);
 const floor=new THREE.Mesh(new THREE.PlaneGeometry(200,200),new THREE.MeshStandardMaterial({color:0x252c33,roughness:.82}));floor.rotation.x=-Math.PI/2;floor.position.y=-.035;floor.receiveShadow=true;scene.add(floor);const grid=new THREE.GridHelper(40,40,0x47515a,0x303941);grid.position.y=-.025;scene.add(grid);
 const car=new THREE.Group();scene.add(car);
@@ -47,7 +47,7 @@ const wallDark=new THREE.MeshStandardMaterial({color:0x18212a,roughness:.82});
 const redTool=new THREE.MeshStandardMaterial({color:0x8d2630,metalness:.28,roughness:.48});
 const lightMat=new THREE.MeshStandardMaterial({color:0xffe6b2,emissive:0xffd27a,emissiveIntensity:2.1});
 // Rear wall and side walls leave the front open like a service bay.
-const shopRoof=add(shop,new THREE.BoxGeometry(10,.18,10),wallDark,[0,4.8,0]);
+add(shop,new THREE.BoxGeometry(10,.18,10),wallDark,[0,4.8,0]);
 add(shop,new THREE.BoxGeometry(.18,4.8,10),wallMat,[4.85,2.4,0]);
 add(shop,new THREE.BoxGeometry(10,4.8,.16),wallMat,[0,2.4,-4.85]);
 add(shop,new THREE.BoxGeometry(.16,4.8,10),wallMat,[-4.85,2.4,0]);
@@ -84,44 +84,6 @@ for(const z of [-.62,.62]){add(car,new THREE.BoxGeometry(.045,.18,.48),lamp,[-2.
 // Tall rear lamps and hatch detailing.
 for(const z of [-.68,.68]){add(car,new THREE.BoxGeometry(.09,.48,.2),red,[2.16,1.35,z],[0,0,-.12]);add(car,new THREE.BoxGeometry(.04,.12,.18),lamp,[2.21,1.18,z]);}
 add(car,new THREE.BoxGeometry(.045,.045,.55),chrome,[2.2,1.12,0]);add(car,new THREE.BoxGeometry(.04,.08,.25),trim,[2.22,.99,0]);
-// BUILD 06: detalhes adicionais inspirados na identidade visual do C4 VTR coupé.
-// São formas procedurais estilizadas, não uma digitalização exata da carroceria.
-const smoked=new THREE.MeshPhysicalMaterial({color:0x111b25,metalness:.4,roughness:.16,clearcoat:1});
-const lens=new THREE.MeshPhysicalMaterial({color:0xd6e6eb,metalness:.22,roughness:.12,transparent:true,opacity:.86,clearcoat:1});
-const amber=new THREE.MeshStandardMaterial({color:0xe49b3d,emissive:0x3d1800});
-// Faróis dianteiros alongados e em cunha, um de cada lado.
-for(const side of [-1,1]){
- const z=side*.68;
- const head=add(car,new THREE.BoxGeometry(.54,.105,.31),smoked,[-1.94,1.33,z],[0,side*.12,side*.11]);
- add(car,new THREE.BoxGeometry(.43,.055,.22),lens,[-1.96,1.375,z],[0,side*.1,side*.1]);
- add(car,new THREE.BoxGeometry(.10,.035,.12),amber,[-1.79,1.37,side*.79]);
- // Moldura do vidro lateral e friso de cintura, na silhueta de duas portas.
- add(car,new THREE.BoxGeometry(2.25,.025,.022),chrome,[.18,1.49,side*.795]);
- add(car,new THREE.BoxGeometry(2.85,.027,.026),trim,[.10,1.04,side*.948]);
- // Saia lateral com linha mais marcada.
- add(car,new THREE.BoxGeometry(2.52,.10,.055),bodyMat,[.04,.75,side*.96]);
- // Lanternas traseiras verticais e envolventes.
- add(car,new THREE.BoxGeometry(.17,.54,.14),red,[2.12,1.43,side*.79],[0,side*.22,-.18]);
- add(car,new THREE.BoxGeometry(.09,.11,.12),lens,[2.19,1.21,side*.79]);
-}
-// Dois chevrons estilizados na dianteira e na tampa traseira.
-for(const x of [-2.275,2.255])for(const y of [1.16,1.235]){
- for(const side of [-1,1]){
-  const badge=add(car,new THREE.BoxGeometry(.025,.025,.19),chrome,[x,y,side*.087],[side*.48,0,0]);
- }
-}
-// Para-choque dianteiro com entrada inferior e molduras laterais.
-add(car,new THREE.BoxGeometry(.055,.12,1.22),dark,[-2.235,.83,0]);
-for(const z of [-.73,.73])add(car,new THREE.BoxGeometry(.05,.12,.22),trim,[-2.23,.86,z]);
-// Terceira luz de freio, moldura de placa e spoiler discreto de teto.
-add(car,new THREE.BoxGeometry(.045,.035,.68),red,[1.48,2.045,0]);
-add(car,new THREE.BoxGeometry(.065,.045,1.36),bodyMat,[1.43,2.095,0]);
-add(car,new THREE.BoxGeometry(.04,.15,.45),dark,[2.255,1.01,0]);
-// Placa decorativa frontal/traseira sem dados reais.
-const plateMat=new THREE.MeshStandardMaterial({color:0xcdd5d9,roughness:.65});
-add(car,new THREE.BoxGeometry(.022,.12,.42),plateMat,[-2.275,.98,0]);
-add(car,new THREE.BoxGeometry(.022,.12,.42),plateMat,[2.275,.99,0]);
-
 // Independent doors with hinges; their geometry follows the side profile.
 const doors=[];function makeDoor(side){const pivot=new THREE.Group();pivot.position.set(-.52,1.18,side*.88);car.add(pivot);shapeMesh(pivot,[[-.08,-.34],[1.43,-.34],[1.47,.2],[1.23,.34],[-.02,.34]],.075,bodyMat,side*.015);add(pivot,new THREE.BoxGeometry(1.18,.035,.025),trim,[.67,-.27,side*.055]);add(pivot,new THREE.BoxGeometry(.16,.035,.035),chrome,[1.16,.08,side*.07]);doors.push({pivot,side});}
 makeDoor(-1);makeDoor(1);
@@ -185,21 +147,12 @@ function resize(){const w=stage.clientWidth,h=stage.clientHeight;camera.aspect=w
 let hoodOpen=false,trunkOpen=false,doorOpen=[false,false];document.querySelector('#hoodBtn').onclick=()=>{hoodOpen=!hoodOpen;hoodPivot.rotation.z=hoodOpen?-.82:0;engineGroup.visible=hoodOpen&&!engineRemoved;document.querySelector('#hoodBtn').textContent=hoodOpen?'Fechar capô':'Abrir capô';msg.textContent=hoodOpen?'Capô aberto — motor 2.0 16V e componentes do cofre visíveis.':'Capô fechado.'};
 function toggleDoor(i){doorOpen[i]=!doorOpen[i];doors[i].pivot.rotation.y=doorOpen[i]?doors[i].side*.85:0;document.querySelector(i?'#rightBtn':'#leftBtn').textContent=(i?'Porta direita':'Porta esquerda')+(doorOpen[i]?' — fechar':'');msg.textContent='Porta '+(i?'direita':'esquerda')+(doorOpen[i]?' aberta.':' fechada.')};document.querySelector('#leftBtn').onclick=()=>toggleDoor(0);document.querySelector('#rightBtn').onclick=()=>toggleDoor(1);
 document.querySelector('#trunkBtn').onclick=()=>{trunkOpen=!trunkOpen;trunkPivot.rotation.z=trunkOpen?.85:0;document.querySelector('#trunkBtn').textContent=trunkOpen?'Fechar porta-malas':'Abrir porta-malas';msg.textContent=trunkOpen?'Porta-malas aberta.':'Porta-malas fechada.'};
-document.querySelector('#resetBtn').onclick=()=>{camera.position.set(3.4,2.65,3.65);controls.target.set(0,1.05,0);controls.update();msg.textContent='Câmera centralizada.'};
+document.querySelector('#resetBtn').onclick=()=>{camera.position.set(6.8,3.6,7.4);controls.target.set(0,1.05,0);controls.update();msg.textContent='Câmera centralizada.'};
 document.querySelector('#paint').onchange=e=>{bodyMat.color.set(e.target.value);document.querySelector('#colorName').textContent=e.target.options[e.target.selectedIndex].text};
 document.querySelector('#rim').oninput=e=>{const n=+e.target.value;document.querySelector('#rimOut').textContent=n+'”';const r=.43+(n-18)*.012;wheels.forEach(w=>{w.g.scale.setScalar(r/.43)})};
 document.querySelector('#ride').oninput=e=>{const v=+e.target.value;const y=.43+(v/100)*.32;wheels.forEach(w=>w.g.position.y=y);document.querySelector('#rideOut').textContent=v<18?'Muito baixa':v<42?'Baixa':v<70?'Média':'Alta'};
 document.querySelector('#camber').oninput=e=>{const v=+e.target.value;document.querySelector('#camberOut').textContent=v+'°';wheels.forEach(w=>w.g.rotation.x=v*.012)};
-document.querySelector('#zoom').oninput=e=>{const v=+e.target.value;document.querySelector('#zoomOut').textContent=v+'%';const dir=camera.position.clone().sub(controls.target).normalize();const dist=THREE.MathUtils.clamp(5.0*100/v,controls.minDistance,controls.maxDistance);camera.position.copy(controls.target).addScaledVector(dir,dist);controls.update()};
+document.querySelector('#zoom').oninput=e=>{const v=+e.target.value;document.querySelector('#zoomOut').textContent=v+'%';camera.position.set(6.8*100/v,3.6*100/v,7.4*100/v);controls.update()};
 document.querySelector('#wheelStyle').onchange=e=>{const v=e.target.value;document.querySelector('#wheelOut').textContent=e.target.options[e.target.selectedIndex].text;const mat=v==='dark'?wheelDark:wheelWhite;wheels.forEach(w=>{w.spokeGroup.children.forEach(s=>{s.material=mat;s.visible=v!=='five'||s.userData.spokeIndex%2===0});w.g.children[1].material=mat})};
-// Camera safety volume: the bay walls are at +/-4.85 and ceiling at 4.8.
-// Keep the camera inside a smaller collision-safe box and looking at the car.
-function protectCamera(){
-  const limit=3.95;
-  camera.position.x=THREE.MathUtils.clamp(camera.position.x,-limit,limit);
-  camera.position.z=THREE.MathUtils.clamp(camera.position.z,-limit,limit);
-  camera.position.y=THREE.MathUtils.clamp(camera.position.y,1.15,4.05);
-  camera.lookAt(controls.target);
-}
-function animate(){requestAnimationFrame(animate);controls.update();protectCamera();renderer.render(scene,camera)}animate();
+function animate(){requestAnimationFrame(animate);controls.update();renderer.render(scene,camera)}animate();
 </script></body></html>
